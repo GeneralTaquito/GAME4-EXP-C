@@ -3,20 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnStuff : MonoBehaviour
+public class Volcano : MonoBehaviour
 {
     public SpriteRenderer SR;
     public Rigidbody2D RB;
 
-    public GameObject Spit;
+    public GameObject Lava;
     public GameObject Player;
-    public float SpitInt;
+    public float SpewInt;
 
     public float Speed;
 
     void Start()
     {
-        InvokeRepeating("StartSpittin", .5f, SpitInt);
+        InvokeRepeating("StartSpewin", .5f, SpewInt);
     }
 
     void Update()
@@ -34,10 +34,10 @@ public class SpawnStuff : MonoBehaviour
 
     }
 
-    void StartSpittin()
+    void StartSpewin()
     {
         Debug.Log("time passed: " + Time.time);
-        GameObject temp = Instantiate(Spit, transform.position, Quaternion.identity);
+        GameObject temp = Instantiate(Lava, transform.position, Quaternion.identity);
         Rigidbody2D rb = temp.GetComponent<Rigidbody2D>();
         rb.linearVelocity = DirectionToPlayer()*Speed;
     }
