@@ -1,4 +1,6 @@
-public class Treats MonoBehaviour;
+using UnityEngine;
+
+public class Treats : MonoBehaviour
 {
     //The player calls this function on the coin whenever they bump into it
     //You can change its contents if you want something different to happen on collection

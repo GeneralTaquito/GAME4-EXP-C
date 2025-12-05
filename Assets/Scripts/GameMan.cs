@@ -1,9 +1,9 @@
 using TMPro;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class GameMan : MonoBehaviour
 {
-    public static ScoreManager Instance;
+    public static GameMan Instance;
     public TextMeshProUGUI ScoreNumber;
     public static int Scoretotal = 00;
 
@@ -32,5 +32,5 @@ public class ScoreManager : MonoBehaviour
         UpdateScore();
     }
 
-    
+
 }

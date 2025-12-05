@@ -23,6 +23,8 @@ public class SpawnStuff : MonoBehaviour
     {
         Vector2 vel = RB.linearVelocity;
 
+        vel.x = -2;
+
         RB.linearVelocity = vel;
 
         if (transform.position.y < -10)
