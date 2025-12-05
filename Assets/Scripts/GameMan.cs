@@ -38,6 +38,29 @@ public class GameMan : MonoBehaviour
     }
 
     //SCORE MAN END
+
+    //TIME MAN START
+        public TextMeshProUGUI TimeNumber;
+        public float Remainingtime;
+
+        void Update()
+        {
+            if (Remainingtime > 0)
+            {
+                Remainingtime -= Time.deltaTime;
+            }
+            else if (Remainingtime < 0)
+            {
+                SceneManager.LoadScene("End_Scene");
+                Remainingtime = 0;
+            }
+
+            int seconds = Mathf.FloorToInt(Remainingtime % 60);
+            TimeNumber.text = string.Format("{0:00}", seconds);
+        }
+    //TIME MAN END
+
+    //SPAWN MAN START
     public GameObject Bomb;
     public Vector3 MinimumArea;
     public Vector3 MaximumArea;
@@ -63,27 +86,6 @@ public class GameMan : MonoBehaviour
             CancelInvoke("SpawnBomb");
         }
     }
-    //SPAWN MAN START
-
-    //TIME MAN START
-        public TextMeshProUGUI TimeNumber;
-        public float Remainingtime;
-
-        void Update()
-        {
-            if (Remainingtime > 0)
-            {
-                Remainingtime -= Time.deltaTime;
-            }
-            else if (Remainingtime < 0)
-            {
-                SceneManager.LoadScene("End_Scene");
-                Remainingtime = 0;
-            }
-
-            int seconds = Mathf.FloorToInt(Remainingtime % 60);
-            TimeNumber.text = string.Format("{0:00}", seconds);
-        }
-    //TIME MAN END
+    //BOMB MAN START
 
 }
