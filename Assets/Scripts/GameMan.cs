@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMan : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class GameMan : MonoBehaviour
     void UpdateScore()
     {
         InvokeRepeating("SpawnBomb", 0f, 4f);
-        
+
         if (ScoreNumber != null)
         {
             ScoreNumber.text = Scoretotal.ToString();
@@ -63,5 +64,26 @@ public class GameMan : MonoBehaviour
         }
     }
     //SPAWN MAN START
+
+    //TIME MAN START
+        public TextMeshProUGUI TimeNumber;
+        public float Remainingtime;
+
+        void Update()
+        {
+            if (Remainingtime > 0)
+            {
+                Remainingtime -= Time.deltaTime;
+            }
+            else if (Remainingtime < 0)
+            {
+                SceneManager.LoadScene("End_Scene");
+                Remainingtime = 0;
+            }
+
+            int seconds = Mathf.FloorToInt(Remainingtime % 60);
+            TimeNumber.text = string.Format("{0:00}", seconds);
+        }
+    //TIME MAN END
 
 }
