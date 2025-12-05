@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GameMan : MonoBehaviour
 {
+
+    //SCORE MAN START
     public static GameMan Instance;
     public TextMeshProUGUI ScoreNumber;
     public static int Scoretotal = 00;
@@ -21,6 +23,8 @@ public class GameMan : MonoBehaviour
     }
     void UpdateScore()
     {
+        InvokeRepeating("SpawnBomb", 0f, 4f);
+        
         if (ScoreNumber != null)
         {
             ScoreNumber.text = Scoretotal.ToString();
@@ -32,5 +36,32 @@ public class GameMan : MonoBehaviour
         UpdateScore();
     }
 
+    //SCORE MAN END
+    public GameObject Bomb;
+    public Vector3 MinimumArea;
+    public Vector3 MaximumArea;
+    public int Bombcount = 0;
+    public int MaxBombcount = 15;
+
+    //Chunk of code for spawn area and limiting spawns
+    void SpawnBomb()
+    {
+        if (Bombcount < MaxBombcount)
+        {
+            float randomX = Random.Range(MinimumArea.x, MaximumArea.x);
+
+            Vector3 randomSpawnPosition = new Vector3(randomX, 6, 0);
+
+            GameObject Newobject = Instantiate(Bomb, randomSpawnPosition, Quaternion.identity);
+            Destroy(Newobject, 4f);
+
+            Bombcount++;
+        }
+        else
+        {
+            CancelInvoke("SpawnBomb");
+        }
+    }
+    //SPAWN MAN START
 
 }

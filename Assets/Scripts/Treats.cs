@@ -1,13 +1,28 @@
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Treats : MonoBehaviour
 {
-    //The player calls this function on the coin whenever they bump into it
-    //You can change its contents if you want something different to happen on collection
-    //For example, what if the coin teleported to a new location instead of being destroyed?
-    public void GetBumped()
+    public float Popspeed = 5f;
+    public ParticleSystem PS;
+
+    void Start()
     {
-        //This destroys the coin
+        PS.Emit(1);
+    }
+    void Update()
+    {
+        transform.Translate(Vector3.left * Popspeed * Time.deltaTime);
+    }
+
+    public int TreatValue = 10;
+    public void OnMouseDown()
+    {
+        if (GameMan.Instance != null)
+        {
+            GameMan.Instance.AddScore(TreatValue);
+        }
         Destroy(gameObject);
     }
 }
