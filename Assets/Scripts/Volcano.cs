@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Volcano : MonoBehaviour
 {
@@ -23,22 +21,17 @@ public class Volcano : MonoBehaviour
 
     void Update()
     {
-
-        transform.Translate(Vector3.left * Speed * Time.deltaTime);
         Vector2 vel = RB.linearVelocity;
+
+        vel.x = -2;
 
         RB.linearVelocity = vel;
 
-    }
-
-    public int BombValue = -10;
-    public void OnMouseDown()
-    {
-        if (GameMan.Instance != null)
+        if (transform.position.y < -10)
         {
-            GameMan.Instance.AddScore(BombValue);
+        //respawn i guess
         }
-        Destroy(gameObject);
+
     }
 
     void StartSpewin()

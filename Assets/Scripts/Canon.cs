@@ -2,21 +2,23 @@ using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 using static UnityEngine.Rendering.DebugUI;
 
-public class Treats : MonoBehaviour
+public class Canon : MonoBehaviour
 {
-    public float Popspeed = 5f;
+    public float Dropspeed = 5f;
     public ParticleSystem PS;
 
     void Start()
     {
         PS.Emit(1);
     }
+
     void Update()
     {
-        transform.Translate(Vector3.left * Popspeed * Time.deltaTime);
+        transform.Translate(Vector3.left * Dropspeed * Time.deltaTime);
     }
 
-    public int TreatValue = 50;
+    public int CanonValue = -10;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -25,7 +27,7 @@ public class Treats : MonoBehaviour
             {
                 if (GameMan.Instance != null)
                 {
-                    GameMan.Instance.AddScore(TreatValue);
+                    GameMan.Instance.AddScore(CanonValue);
                 }
 
                 Destroy(gameObject);
