@@ -8,16 +8,9 @@ public class Volcano : MonoBehaviour
     public SpriteRenderer SR;
     public Rigidbody2D RB;
 
-    public GameObject Lava;
     public GameObject Player;
-    public float SpewInt;
 
     public float Speed;
-
-    void Start()
-    {
-        InvokeRepeating("StartSpewin", .5f, SpewInt);
-    }
 
     void Update()
     {
@@ -32,14 +25,6 @@ public class Volcano : MonoBehaviour
         //respawn i guess
         }
 
-    }
-
-    void StartSpewin()
-    {
-        Debug.Log("time passed: " + Time.time);
-        GameObject temp = Instantiate(Lava, transform.position, Quaternion.identity);
-        Rigidbody2D rb = temp.GetComponent<Rigidbody2D>();
-        rb.linearVelocity = DirectionToPlayer()*Speed;
     }
 
     Vector3 DirectionToPlayer()
